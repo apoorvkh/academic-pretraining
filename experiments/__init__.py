@@ -115,12 +115,15 @@ class Experiment(ABC):
         # if CLI was already initialized
         mp.set_start_method(None, force=True)
 
-        with tango_cli(tango_settings):
-            tango.cli.execute_step_graph(
-                step_graph=self.step_graph,
-                workspace=tango_workspace,
-                executor=tango_executor,
-            )
+        try:
+            with tango_cli(tango_settings):
+                tango.cli.execute_step_graph(
+                    step_graph=self.step_graph,
+                    workspace=tango_workspace,
+                    executor=tango_executor,
+                )
+        except tango.common.exceptions.CliRunError:
+            pass
 
     def is_cached(self) -> bool:
         for s in self.step_dict.values():
