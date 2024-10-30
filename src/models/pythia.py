@@ -14,7 +14,7 @@ class PythiaModelClass(LanguageModelClass[PythiaT]):
     def build_model(self, use_custom_kernels: bool = True) -> PreTrainedModel:
         return GPTNeoXForCausalLM.from_pretrained(
             f"EleutherAI/{self.model_type}",
-            revision="step0",  # ensures same initialization
+            # revision="step0",  # to ensure same initialization as original Pythia training
             attn_implementation=("sdpa" if use_custom_kernels else "eager"),
         )  # pyright: ignore [reportReturnType]
 
