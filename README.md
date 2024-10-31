@@ -9,7 +9,7 @@ Use this repository to:
 1. determine the *best* HuggingFace Trainer settings for training your model on your hardware
 2. determine how long training will take
 
-Refer to [our paper](https://arxiv.org/abs/) for further insights about the current state of academic compute, more training times (for several models and GPUs), and for help deciding which GPUs to buy.
+Refer to [our paper](https://arxiv.org/abs/2410.23261) for further insights about the current state of academic compute, more training times (for several models and GPUs), and for help deciding which GPUs to buy.
 
 > [!NOTE]
 > This repository is written as an abstraction over the [Transformers](https://github.com/huggingface/transformers) and [PyTorch](https://github.com/pytorch/pytorch) libraries (currently pinned to `transformers==4.42.3` and `torch==2.3.1`). We automatically handle all dependencies, multi-node/GPU environments, and experiment caching/execution (with SLURM support). Our codebase should also be easy to extend for new GPUs and models. We plan to continually update this repository with new features. We provide all [artifacts](#artifacts) from our survey and experiments (pinned to previous revisions of our repository/paper).
@@ -178,9 +178,9 @@ If you use our codebase in your work, please cite:
   title         = {{$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources}},
   author        = {Apoorv Khandelwal and Tian Yun and Nihal V. Nayak and Jack Merullo and Stephen H. Bach and Chen Sun and Ellie Pavlick},
   year          = 2024,
-  url           = {https://arxiv.org/pdf/},
-  eprint        = {},
+  url           = {https://arxiv.org/pdf/2410.23261},
+  eprint        = {2410.23261},
   archiveprefix = {arXiv},
-  primaryclass  = {}
+  primaryclass  = {cs.CL}
 }
 ```
