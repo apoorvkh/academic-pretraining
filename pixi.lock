@@ -125,12 +125,12 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/fb/2b/a64c2d25a37aeb921fddb929111413049fc5f8b9a4c1aefaffaafe768d54/cachetools-5.3.3-py3-none-any.whl
       - pypi: direct+https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.4.0/causal_conv1d-1.4.0+cu122torch2.3cxx11abiFALSE-cp311-cp311-linux_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/5b/11/1e78951465b4a225519b8c3ad29769c49e0d8d157a070f681d5b6d64737f/certifi-2024.6.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/f3/b9/f163bb3fa4fbc636ee1f2a6a4598c096cdef279823ddfaa5734e556dd206/cffi-1.17.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/ff/6b/d45873c5e0242196f042d555526f92aa9e0c32355a1be1ff8c27f077fd37/cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/40/26/f35951c45070edc957ba40a5b1db3cf60a9dbb1b350c2d5bef03e01e61de/charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/c2/f1/df59e28c642d583f7dacffb1e0965d0e00b218e0186d7858ac5233dce840/click-8.1.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/8768f803151714640cb6f06fd9de490ce7db632d351da05f42f77330d2fd/click_help_colors-0.9.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/96/43/dae06432d0c4b1dc9e9149ad37b4ca8384cf6eb7700cd9215b177b914f0a/cloudpickle-3.0.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/0f/6c/b42660b3075ff543065b2c1c5a3d9bedaadcff8ebce2ee981be2babc2934/cryptography-43.0.0-cp39-abi3-manylinux_2_28_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/ac/25/e715fa0bc24ac2114ed69da33adf451a38abb6f3f24ec207908112e9ba53/cryptography-43.0.3-cp39-abi3-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/2e/06/7315113506f1804b8ba4f77cb31905c62f7080452a0af2d13eaadaa83a08/deepspeed-0.14.4.tar.gz
       - pypi: https://files.pythonhosted.org/packages/20/8d/778b7d51b981a96554f29136cd59ca7880bf58094338085bcf2a979a0e6a/Deprecated-1.2.14-py2.py3-none-any.whl
@@ -190,7 +190,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/da/d3/8057f0587683ed2fcd4dbfbdfdfa807b9160b809976099d36b8f60d08f03/nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/08/aa/cc0199a5f0ad350994d660967a8efb233fe0416e4639146c089643407ce6/packaging-24.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fc/a5/4d82be566f069d7a9a702dcdf6f9106df0e0b042e738043c0cc7ddd7e3f6/pandas-2.2.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/96/6e/4a52a8923d840107024b844d83502dfa6a1e5399ad31cf9d1a4ddbaaa7e5/paramiko-3.4.1-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/1f/66/14b2c030fcce69cba482d205c2d1462ca5c77303a263260dcb1192801c85/paramiko-3.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c6/ac/dac4a63f978e4dcb3c6d3a78c4d8e0192a113d288502a1216950c41b1027/parso-0.8.4-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/a5/348c90b3fb09d7bd76f7dacf1b92e251d75bfbe715006cb9b84eb23be1b1/petname-2.6.tar.gz
       - pypi: https://files.pythonhosted.org/packages/81/ff/ad3c942d865f9e45ce84eeb31795e6d4d94e1f1eea51026d5154028510d7/pillow-10.3.0-cp311-cp311-manylinux_2_28_x86_64.whl
@@ -234,7 +234,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a7/03/fb50fc03f86016b227a967c8d474f90230c885c0d18f78acdfda7a96ce56/tokenizers-0.19.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/73/6d/b5406752c4e4ba86692b22fab0afed8b48f16bdde8f92e1d852976b61dc6/tomlkit-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/9a/4c5e74264439837814656201da13a898056a5201c976ef042544bceb840f/torch-2.3.1-cp311-cp311-manylinux1_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/4e/29/2e8bb7bf2c588f7debf7a9efe33e56509f312264e16bfadc5ba2bb71113e/torchrunx-0.1.3-py3-none-any.whl
+      - pypi: git+https://github.com/apoorvkh/torchrunx@59572e30d4a094810649f83e64aeaa8000d1eac8
       - pypi: https://files.pythonhosted.org/packages/82/d8/fad23c368781b6e6df254287511683b4d151132de64c47a6fea5c3280ba6/torchvision-0.18.1-cp311-cp311-manylinux1_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/18/eb/fdb7eb9e48b7b02554e1664afd3bd3f117f6b6d6c5881438a0b055554f9b/tqdm-4.66.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/20/5c/244db59e074e80248fdfa60495eeee257e4d97c3df3487df68be30cd60c8/transformers-4.42.3-py3-none-any.whl
@@ -693,9 +693,9 @@ packages:
   requires_python: '>=3.6'
 - kind: pypi
   name: cffi
-  version: 1.17.0
-  url: https://files.pythonhosted.org/packages/f3/b9/f163bb3fa4fbc636ee1f2a6a4598c096cdef279823ddfaa5734e556dd206/cffi-1.17.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  sha256: a8b5b9712783415695663bd463990e2f00c6750562e6ad1d28e072a611c5f2a6
+  version: 1.17.1
+  url: https://files.pythonhosted.org/packages/ff/6b/d45873c5e0242196f042d555526f92aa9e0c32355a1be1ff8c27f077fd37/cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: 610faea79c43e44c71e1ec53a554553fa22321b65fae24889706c0a84d4ad86d
   requires_dist:
   - pycparser
   requires_python: '>=3.8'
@@ -731,14 +731,14 @@ packages:
   requires_python: '>=3.8'
 - kind: pypi
   name: cryptography
-  version: 43.0.0
-  url: https://files.pythonhosted.org/packages/0f/6c/b42660b3075ff543065b2c1c5a3d9bedaadcff8ebce2ee981be2babc2934/cryptography-43.0.0-cp39-abi3-manylinux_2_28_x86_64.whl
-  sha256: cb013933d4c127349b3948aa8aaf2f12c0353ad0eccd715ca789c8a0f671646f
+  version: 43.0.3
+  url: https://files.pythonhosted.org/packages/ac/25/e715fa0bc24ac2114ed69da33adf451a38abb6f3f24ec207908112e9ba53/cryptography-43.0.3-cp39-abi3-manylinux_2_28_x86_64.whl
+  sha256: c2e6fc39c4ab499049df3bdf567f768a723a5e8464816e8f009f121a5a9f4405
   requires_dist:
   - cffi>=1.12 ; platform_python_implementation != 'PyPy'
   - bcrypt>=3.1.5 ; extra == 'ssh'
   - nox ; extra == 'nox'
-  - cryptography-vectors==43.0.0 ; extra == 'test'
+  - cryptography-vectors==43.0.3 ; extra == 'test'
   - pytest>=6.2.0 ; extra == 'test'
   - pytest-benchmark ; extra == 'test'
   - pytest-cov ; extra == 'test'
@@ -1333,49 +1333,49 @@ packages:
   - torch
   - tqdm
   - mpi4py ; extra == '1bit-mpi'
-  - mpi4py ; extra == 'all'
-  - clang-format==16.0.2 ; extra == 'all'
-  - xgboost ; extra == 'all'
-  - tabulate ; extra == 'all'
-  - comet-ml>=3.41.0 ; extra == 'all'
-  - google ; extra == 'all'
-  - safetensors ; extra == 'all'
-  - sphinx ; extra == 'all'
-  - docutils<0.18 ; extra == 'all'
-  - pytest>=7.2.0 ; extra == 'all'
-  - hjson ; extra == 'all'
-  - psutil ; extra == 'all'
-  - neural-compressor==2.1.0 ; extra == 'all'
-  - torch ; extra == 'all'
-  - accelerate ; extra == 'all'
-  - pytest-forked ; extra == 'all'
-  - importlib-metadata>=4 ; extra == 'all'
-  - tensorboard ; extra == 'all'
-  - qtorch ; extra == 'all'
-  - sphinx-rtd-theme ; extra == 'all'
-  - tqdm ; extra == 'all'
-  - packaging ; extra == 'all'
-  - mup ; extra == 'all'
-  - sentencepiece ; extra == 'all'
-  - torchvision ; extra == 'all'
-  - future ; extra == 'all'
-  - triton>=2.1.0 ; extra == 'all'
   - lm-eval==0.3.0 ; extra == 'all'
-  - triton==2.1.0 ; extra == 'all'
-  - transformers>=4.32.1 ; extra == 'all'
-  - qtorch==0.3.0 ; extra == 'all'
-  - transformers>=4.39.0 ; extra == 'all'
-  - py-cpuinfo ; extra == 'all'
-  - protobuf ; extra == 'all'
-  - pytest-randomly ; extra == 'all'
-  - pytest-xdist ; extra == 'all'
-  - pre-commit>=2.20.0 ; extra == 'all'
-  - triton==1.0.0 ; extra == 'all'
-  - recommonmark ; extra == 'all'
-  - wandb ; extra == 'all'
+  - pytest-forked ; extra == 'all'
+  - packaging ; extra == 'all'
+  - sphinx-rtd-theme ; extra == 'all'
   - autodoc-pydantic ; extra == 'all'
-  - pydantic<2.0.0 ; extra == 'all'
+  - neural-compressor==2.1.0 ; extra == 'all'
+  - wandb ; extra == 'all'
+  - xgboost ; extra == 'all'
   - diffusers>=0.25.0 ; extra == 'all'
+  - sentencepiece ; extra == 'all'
+  - hjson ; extra == 'all'
+  - tabulate ; extra == 'all'
+  - protobuf ; extra == 'all'
+  - pre-commit>=2.20.0 ; extra == 'all'
+  - triton>=2.1.0 ; extra == 'all'
+  - mpi4py ; extra == 'all'
+  - tensorboard ; extra == 'all'
+  - triton==2.1.0 ; extra == 'all'
+  - psutil ; extra == 'all'
+  - torchvision ; extra == 'all'
+  - pytest-xdist ; extra == 'all'
+  - py-cpuinfo ; extra == 'all'
+  - pydantic<2.0.0 ; extra == 'all'
+  - docutils<0.18 ; extra == 'all'
+  - mup ; extra == 'all'
+  - pytest-randomly ; extra == 'all'
+  - sphinx ; extra == 'all'
+  - importlib-metadata>=4 ; extra == 'all'
+  - qtorch ; extra == 'all'
+  - safetensors ; extra == 'all'
+  - triton==1.0.0 ; extra == 'all'
+  - accelerate ; extra == 'all'
+  - qtorch==0.3.0 ; extra == 'all'
+  - transformers>=4.32.1 ; extra == 'all'
+  - future ; extra == 'all'
+  - recommonmark ; extra == 'all'
+  - pytest>=7.2.0 ; extra == 'all'
+  - google ; extra == 'all'
+  - transformers>=4.39.0 ; extra == 'all'
+  - torch ; extra == 'all'
+  - clang-format==16.0.2 ; extra == 'all'
+  - tqdm ; extra == 'all'
+  - comet-ml>=3.41.0 ; extra == 'all'
   - deepspeed-kernels ; sys_platform == 'linux' and extra == 'all'
   - tabulate ; extra == 'autotuning'
   - hjson ; extra == 'autotuning-ml'
@@ -3119,9 +3119,9 @@ packages:
   requires_python: '>=3.9'
 - kind: pypi
   name: paramiko
-  version: 3.4.1
-  url: https://files.pythonhosted.org/packages/96/6e/4a52a8923d840107024b844d83502dfa6a1e5399ad31cf9d1a4ddbaaa7e5/paramiko-3.4.1-py3-none-any.whl
-  sha256: 8e49fd2f82f84acf7ffd57c64311aa2b30e575370dc23bdb375b10262f7eac32
+  version: 3.5.0
+  url: https://files.pythonhosted.org/packages/1f/66/14b2c030fcce69cba482d205c2d1462ca5c77303a263260dcb1192801c85/paramiko-3.5.0-py3-none-any.whl
+  sha256: 1fedf06b085359051cd7d0d270cebe19e755a8a921cc2ddbfa647fb0cd7d68f9
   requires_dist:
   - bcrypt>=3.2
   - cryptography>=3.3
@@ -3728,16 +3728,14 @@ packages:
   requires_python: '>=3.8.0'
 - kind: pypi
   name: torchrunx
-  version: 0.1.3
-  url: https://files.pythonhosted.org/packages/4e/29/2e8bb7bf2c588f7debf7a9efe33e56509f312264e16bfadc5ba2bb71113e/torchrunx-0.1.3-py3-none-any.whl
-  sha256: 8c6d138b56ff5a2ac7b5e1d4391534ed8ea1119c3f669ef6da691160b81faf2d
+  version: 0.2.1
+  url: git+https://github.com/apoorvkh/torchrunx@59572e30d4a094810649f83e64aeaa8000d1eac8
   requires_dist:
-  - cloudpickle>=3.0.0
-  - fabric>=3.0.0
-  - numpy<2
-  - numpy>=1.26.0 ; python_version == '3.12'
-  - torch>=2.0.0
-  requires_python: '>=3.8.1'
+  - cloudpickle>=3.0
+  - fabric>=3.2
+  - torch>=2.0
+  - numpy>=1.20
+  requires_python: '>=3.9'
 - kind: pypi
   name: torchvision
   version: 0.18.1

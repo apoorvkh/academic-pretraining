@@ -1,18 +1,16 @@
 import dataclasses
 import math
-import os
 import tempfile
 from dataclasses import dataclass
 from typing import Any, Sequence, TypedDict
 
 import torch
-import torchrunx
 from src.benchmarking.max_batch_size import find_max_mbs_pow2
 from src.benchmarking.step_time import estimate_step_time
 from src.benchmarking.utils import ManualTrainer
 from tango import Step
 
-from experiments import Experiment, SlurmJob, step
+from experiments import Experiment, SlurmJob, distribute, step
 from experiments.config import TrainingConfig
 
 
@@ -52,13 +50,11 @@ def find_largest_batch_size_worker(config: TrainingConfig, limit: int):
 
 @step(cacheable=True, version="001")
 def find_largest_batch_size(config: TrainingConfig, limit: int) -> int:
-    return torchrunx.launch(
+    return distribute(
         func=find_largest_batch_size_worker,
         func_kwargs={"config": config, "limit": limit},
-        hostnames=torchrunx.slurm_hosts(),
         workers_per_host=config.gpus_per_node,
-        log_dir=os.environ["TORCHRUNX_LOG_DIR"],
-    )[0]
+    )
 
 
 class BenchmarkingResults(TypedDict):
@@ -98,7 +94,7 @@ def benchmark_step_time(
 
     while micro_batch_size > 0:
         try:
-            benchmark_results = torchrunx.launch(
+            benchmark_results = distribute(
                 func=benchmark_step_time_worker,
                 func_kwargs=dict(
                     config=config,
@@ -107,14 +103,12 @@ def benchmark_step_time(
                     target_micro_batch_size=target_micro_batch_size,
                     num_benchmarking_steps=num_benchmarking_steps,
                 ),
-                hostnames=torchrunx.slurm_hosts(),
                 workers_per_host=config.gpus_per_node,
-                log_dir=os.environ["TORCHRUNX_LOG_DIR"],
-            )[0]
+            )
         except RuntimeError:
             if config.free_lunch:
-                print("Possible time-out during compile, trying again without compiling")
-                benchmark_results = torchrunx.launch(
+                print("Possible time-out during compile, trying again without compiling...")
+                benchmark_results = distribute(
                     func=benchmark_step_time_worker,
                     func_kwargs=dict(
                         config=config,
@@ -123,10 +117,8 @@ def benchmark_step_time(
                         target_micro_batch_size=target_micro_batch_size,
                         num_benchmarking_steps=num_benchmarking_steps,
                     ),
-                    hostnames=torchrunx.slurm_hosts(),
                     workers_per_host=config.gpus_per_node,
-                    log_dir=os.environ["TORCHRUNX_LOG_DIR"],
-                )[0]
+                )
             else:
                 raise
 
@@ -144,6 +136,9 @@ def compute_training_days(benchmarking_results: BenchmarkingResults | None, num_
     if benchmarking_results is None:
         return None
     return (num_steps * benchmarking_results["step_time"]) / (24 * 60 * 60)
+
+
+## Experiment
 
 
 @dataclass

@@ -5,8 +5,7 @@ import torch.cuda
 from .step_time import benchmark_acc_optim_times
 from .utils import ManualTrainer
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("academic-pretraining")
 
 
 def find_max_mbs_pow2(trainer: ManualTrainer, limit: int) -> int:

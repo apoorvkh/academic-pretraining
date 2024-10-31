@@ -24,8 +24,10 @@ from tango.settings import TangoGlobalSettings
 from tqdm import tqdm
 
 from experiments.__tango__ import TangoStringHash, step, tango_executor, tango_settings, tango_workspace
+from experiments.__torchrunx__ import distribute
 from experiments.config import GpuT
 
+__all__ = ["SlurmJob", "Experiment", "Sweep", "distribute", "TangoStringHash", "step"]
 
 @dataclass(unsafe_hash=True)  # for batching jobs
 class SlurmJob:
@@ -292,6 +294,3 @@ class Sweep(Generic[ExperimentT], ABC):
     @classmethod
     def cli(cls) -> None:
         tyro.cli(cls.run)
-
-
-__all__ = ["SlurmJob", "Experiment", "Sweep", "TangoStringHash", "step"]

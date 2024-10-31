@@ -8,8 +8,7 @@ from transformers import Trainer
 
 from .utils import ManualTrainer
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("academic-pretraining")
 
 
 @contextmanager
@@ -74,14 +73,23 @@ def benchmark_acc_optim_times(
 
 
 def estimate_step_time(
-    trainer: ManualTrainer, micro_batch_size: int, target_micro_batch_size: int, num_benchmarking_steps: int
+    trainer: ManualTrainer,
+    micro_batch_size: int,
+    target_micro_batch_size: int,
+    num_benchmarking_steps: int,
 ) -> float:
     accumulation_steps = target_micro_batch_size // micro_batch_size
 
-    logger.info(f"Estimating step time for MBS = {micro_batch_size}, ACC = {accumulation_steps}")
+    logger.info(
+        f"Estimating step time for MBS = {micro_batch_size}, ACC = {accumulation_steps}",
+    )
 
     mean_acc_time, mean_optim_time = benchmark_acc_optim_times(
-        trainer, micro_batch_size, training_steps=num_benchmarking_steps, accumulations=1, warmup=True
+        trainer,
+        micro_batch_size,
+        training_steps=num_benchmarking_steps,
+        accumulations=1,
+        warmup=True,
     )
 
     mean_step_time = mean_acc_time * accumulation_steps + mean_optim_time
