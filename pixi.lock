@@ -234,7 +234,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a7/03/fb50fc03f86016b227a967c8d474f90230c885c0d18f78acdfda7a96ce56/tokenizers-0.19.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/73/6d/b5406752c4e4ba86692b22fab0afed8b48f16bdde8f92e1d852976b61dc6/tomlkit-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/9a/4c5e74264439837814656201da13a898056a5201c976ef042544bceb840f/torch-2.3.1-cp311-cp311-manylinux1_x86_64.whl
-      - pypi: git+https://github.com/apoorvkh/torchrunx@59572e30d4a094810649f83e64aeaa8000d1eac8
+      - pypi: https://files.pythonhosted.org/packages/8a/e1/cecb3ca72abe233640f5f78b548a821cd396253b65cb9ed23571e4f65bda/torchrunx-0.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/82/d8/fad23c368781b6e6df254287511683b4d151132de64c47a6fea5c3280ba6/torchvision-0.18.1-cp311-cp311-manylinux1_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/18/eb/fdb7eb9e48b7b02554e1664afd3bd3f117f6b6d6c5881438a0b055554f9b/tqdm-4.66.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/20/5c/244db59e074e80248fdfa60495eeee257e4d97c3df3487df68be30cd60c8/transformers-4.42.3-py3-none-any.whl
@@ -3729,12 +3729,13 @@ packages:
 - kind: pypi
   name: torchrunx
   version: 0.2.1
-  url: git+https://github.com/apoorvkh/torchrunx@59572e30d4a094810649f83e64aeaa8000d1eac8
+  url: https://files.pythonhosted.org/packages/8a/e1/cecb3ca72abe233640f5f78b548a821cd396253b65cb9ed23571e4f65bda/torchrunx-0.2.1-py3-none-any.whl
+  sha256: 99580e69635ac96e8523f094070e4e673cd1945b7a6050645eeb356fb58874fc
   requires_dist:
   - cloudpickle>=3.0
   - fabric>=3.2
-  - torch>=2.0
   - numpy>=1.20
+  - torch>=2.0
   requires_python: '>=3.9'
 - kind: pypi
   name: torchvision
