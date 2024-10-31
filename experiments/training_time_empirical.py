@@ -2,7 +2,7 @@ import dataclasses
 import math
 import tempfile
 from dataclasses import dataclass
-from typing import Any, Sequence, TypedDict
+from typing import Any, TypedDict
 
 import torch
 from src.benchmarking.max_batch_size import find_max_mbs_pow2
@@ -163,23 +163,23 @@ class TrainingTimeEmpirical(Experiment):
             [
                 self.benchmarking_steps <= 0,
                 self.trial < 0,
-                # target batch size should be power of 2
-                not math.log2(self.model_class.batch_size).is_integer(),
-                # target batch size should be evenly divisible by total GPUs
+                # model batch size should be evenly divisible by total GPUs
                 self.model_class.batch_size % (self.config.num_nodes * self.config.gpus_per_node) > 0,
+                # batch size per gpu should be power of 2
+                not math.log2(
+                    self.model_class.batch_size // (self.config.num_nodes * self.config.gpus_per_node)
+                ).is_integer(),
                 # if activation checkpointing is enabled, model should support it
-                (not self.model_class.supports_activation_checkpointing) and self.config.activation_checkpointing,
+                self.config.activation_checkpointing and (not self.model_class.supports_activation_checkpointing),
                 # data types for ampere or newer GPUs
-                (not self.config.ampere_or_newer_gpu() and (self.training_class.tf32 or self.training_class.bf16)),
+                self.model_class.mixed_precision == "bf16" and not self.config.ampere_or_newer_gpu(),
                 # don't shard for a single GPU (no-op)
-                (
-                    self.config.num_nodes == 1
-                    and self.config.gpus_per_node == 1
-                    and self.config.sharding != ""
-                    and not self.config.offloading
-                ),
+                self.config.num_nodes == 1
+                and self.config.gpus_per_node == 1
+                and self.config.sharding != ""
+                and not self.config.offloading,
                 # offloading requires sharding
-                (self.config.sharding == "" and self.config.offloading),
+                (self.config.offloading and self.config.sharding == ""),
             ]
         ):
             return False
@@ -216,10 +216,6 @@ class TrainingTimeEmpirical(Experiment):
             gpus_per_node=self.config.gpus_per_node,
             gpu_type=self.config.gpu_type,
         )
-
-    @property
-    def dependencies(self) -> Sequence[Experiment]:
-        return []
 
     def results(self):
         return {
