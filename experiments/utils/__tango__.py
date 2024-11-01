@@ -11,6 +11,8 @@ from tango.settings import TangoGlobalSettings
 from tango.workspaces.local_workspace import LocalWorkspace  # noqa: F401
 from tango.workspaces.memory_workspace import MemoryWorkspace, default_workspace  # noqa: F401
 
+__all__ = ["TangoStringHash", "step", "tango_executor", "tango_settings", "tango_workspace"]
+
 tango_settings: TangoGlobalSettings = TangoGlobalSettings(
     workspace={
         **(
@@ -73,6 +75,3 @@ def step(
         return WrapperStep
 
     return step_wrapper
-
-
-__all__ = ["TangoStringHash", "step", "tango_executor", "tango_settings", "tango_workspace"]

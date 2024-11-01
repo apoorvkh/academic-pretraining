@@ -5,6 +5,9 @@ from pathlib import Path
 from typing import Any, Callable
 
 import torchrunx
+import torchrunx.utils.environment
+
+__all__ = ["distribute"]
 
 
 def build_logging_handlers(hostnames):
@@ -45,7 +48,7 @@ def distribute(
 
     log_handlers_builder, log_files = build_logging_handlers(hostnames)
 
-    print(f"Logging results of \"{func.__name__}\" to:")
+    print(f'Logging results of "{func.__name__}" to:')
     for file_path in log_files:
         print(f"  - {file_path}")
 
