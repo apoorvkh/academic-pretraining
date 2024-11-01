@@ -17,7 +17,7 @@ def build_logging_handlers(hostnames):
     timestamp = datetime.now().isoformat(timespec="seconds")
     file_paths = [f"{log_dir}/{timestamp}-{hostname}.log" for hostname in hostnames]
 
-    def _handler_builder() -> list[logging.Handler]:
+    def _handler_factory() -> list[logging.Handler]:
         handlers = []
 
         stream_handler = torchrunx.stream_handler(hostname=hostnames[0], local_rank=0)
@@ -31,7 +31,7 @@ def build_logging_handlers(hostnames):
             ]
         return handlers
 
-    return _handler_builder, file_paths
+    return _handler_factory, file_paths
 
 
 def distribute(
@@ -46,7 +46,7 @@ def distribute(
     if workers_per_host is None:
         workers_per_host = torchrunx.utils.environment.auto_workers()
 
-    log_handlers_builder, log_files = build_logging_handlers(hostnames)
+    handler_factory, log_files = build_logging_handlers(hostnames)
 
     print(f'Logging results of "{func.__name__}" to:')
     for file_path in log_files:
@@ -57,5 +57,5 @@ def distribute(
         func_kwargs=func_kwargs,
         hostnames=hostnames,
         workers_per_host=workers_per_host,
-        log_handlers_builder=log_handlers_builder,
+        handler_factory=handler_factory,
     ).rank(0)
