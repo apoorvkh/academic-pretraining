@@ -9,6 +9,7 @@ def __():
     import altair as alt
     import marimo as mo
     import polars as pl
+
     return alt, mo, pl
 
 
@@ -16,6 +17,7 @@ def __():
 def __():
     from experiments.training_time_empirical_sweep import TrainingTimeEmpiricalSweep
     from scripts.plotting import process_training_time_results
+
     return TrainingTimeEmpiricalSweep, process_training_time_results
 
 
@@ -36,9 +38,7 @@ def __(TrainingTimeEmpiricalSweep, process_training_time_results):
         free_lunch_only=True,
     )
 
-    memory_saving_results = process_training_time_results(
-        results=_optimized, mem_saving_only=True, select_min=True
-    )
+    memory_saving_results = process_training_time_results(results=_optimized, mem_saving_only=True, select_min=True)
     return free_lunch_results, memory_saving_results
 
 
@@ -46,12 +46,8 @@ def __(TrainingTimeEmpiricalSweep, process_training_time_results):
 def __(free_lunch_results, memory_saving_results):
     _columns = ["num_nodes", "gpus_per_node", "gpu_type", "model", "training_days"]
 
-    _free_lunch = free_lunch_results.select(_columns).rename(
-        {"training_days": "training_days_free_lunch"}
-    )
-    _memory_saving = memory_saving_results.select(_columns).rename(
-        {"training_days": "training_days_memory_saving"}
-    )
+    _free_lunch = free_lunch_results.select(_columns).rename({"training_days": "training_days_free_lunch"})
+    _memory_saving = memory_saving_results.select(_columns).rename({"training_days": "training_days_memory_saving"})
 
     _join_kwargs = {
         "on": ["num_nodes", "gpus_per_node", "gpu_type", "model"],
@@ -66,8 +62,7 @@ def __(free_lunch_results, memory_saving_results):
 def __(merged_results, pl):
     normalized_results = (
         merged_results.filter(
-            pl.col("training_days_free_lunch").is_not_null()
-            & pl.col("training_days_memory_saving").is_not_null()
+            pl.col("training_days_free_lunch").is_not_null() & pl.col("training_days_memory_saving").is_not_null()
         )
         .with_columns(
             (
@@ -79,9 +74,7 @@ def __(merged_results, pl):
     )
 
     normalized_results = normalized_results.with_columns(
-        pl.col("gpu_type").replace(
-            {"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}
-        ),
+        pl.col("gpu_type").replace({"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}),
         pl.col("model").replace(
             {
                 "pythia-160m": "160M",
@@ -123,9 +116,7 @@ def __(alt, normalized_results):
         alt.X("gpus_per_node:O"),
         alt.Y("gpu_type:O"),
         text=alt.Text("mean_memory_saving:Q", format=".0%"),
-        color=alt.condition(
-            alt.datum["mean_memory_saving"] < 0, alt.value("black"), alt.value("white")
-        ),
+        color=alt.condition(alt.datum["mean_memory_saving"] < 0, alt.value("black"), alt.value("white")),
     )
 
     _chart2 = (
@@ -133,9 +124,7 @@ def __(alt, normalized_results):
             normalized_results,
         )
         .transform_filter(alt.datum.gpus_per_node > 1)
-        .transform_aggregate(
-            mean_memory_saving="mean(memory_saving_percent_gains)", groupby=["gpu_type", "model"]
-        )
+        .transform_aggregate(mean_memory_saving="mean(memory_saving_percent_gains)", groupby=["gpu_type", "model"])
         .mark_rect(stroke="black", strokeWidth=1)
         .encode(
             alt.X(
@@ -197,9 +186,7 @@ def __(TrainingTimeEmpiricalSweep, process_training_time_results):
         free_lunch_only=True,
     )
 
-    all_memory_saving_results = process_training_time_results(
-        results=_optimized, mem_saving_only=True, select_min=True
-    )
+    all_memory_saving_results = process_training_time_results(results=_optimized, mem_saving_only=True, select_min=True)
     return all_free_lunch_results, all_memory_saving_results
 
 
@@ -207,12 +194,8 @@ def __(TrainingTimeEmpiricalSweep, process_training_time_results):
 def __(all_free_lunch_results, all_memory_saving_results, pl):
     _columns = ["num_nodes", "gpus_per_node", "gpu_type", "model", "training_days"]
 
-    _free_lunch = all_free_lunch_results.select(_columns).rename(
-        {"training_days": "training_days_free_lunch"}
-    )
-    _memory_saving = all_memory_saving_results.select(_columns).rename(
-        {"training_days": "training_days_memory_saving"}
-    )
+    _free_lunch = all_free_lunch_results.select(_columns).rename({"training_days": "training_days_free_lunch"})
+    _memory_saving = all_memory_saving_results.select(_columns).rename({"training_days": "training_days_memory_saving"})
 
     _join_kwargs = {
         "on": ["num_nodes", "gpus_per_node", "gpu_type", "model"],
@@ -223,8 +206,7 @@ def __(all_free_lunch_results, all_memory_saving_results, pl):
 
     all_normalized_results = (
         _merged_results.filter(
-            pl.col("training_days_free_lunch").is_not_null()
-            & pl.col("training_days_memory_saving").is_not_null()
+            pl.col("training_days_free_lunch").is_not_null() & pl.col("training_days_memory_saving").is_not_null()
         )
         .with_columns(
             (
@@ -236,9 +218,7 @@ def __(all_free_lunch_results, all_memory_saving_results, pl):
     )
 
     all_normalized_results = all_normalized_results.with_columns(
-        pl.col("gpu_type").replace(
-            {"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}
-        ),
+        pl.col("gpu_type").replace({"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}),
         pl.col("model").replace(
             {
                 "pythia-160m": "(160M)",
@@ -252,12 +232,16 @@ def __(all_free_lunch_results, all_memory_saving_results, pl):
                 "vit": "ViT",
             },
         ),
-        pl.col("gpus_per_node").cast(str).replace({
-            "1": "1 GPU",
-            "2": "2 GPUs",
-            "4": "4 GPUs",
-            "8": "8 GPUs",
-        })
+        pl.col("gpus_per_node")
+        .cast(str)
+        .replace(
+            {
+                "1": "1 GPU",
+                "2": "2 GPUs",
+                "4": "4 GPUs",
+                "8": "8 GPUs",
+            }
+        ),
     )
     return (all_normalized_results,)
 
@@ -293,9 +277,7 @@ def __(all_normalized_results, alt):
                 title="",
                 scale=alt.Scale(domain=["RTX 3090", "A6000", "A100", "H100"], reverse=True),
             ),
-            alt.Color(
-                "memory_saving_percent_gains:Q", title="", legend=None, scale=alt.Scale(domain=[-1, 1])
-            ),
+            alt.Color("memory_saving_percent_gains:Q", title="", legend=None, scale=alt.Scale(domain=[-1, 1])),
         )
         .properties(
             width=1200,
@@ -307,9 +289,7 @@ def __(all_normalized_results, alt):
         alt.X("model"),
         alt.Y("gpu_type"),
         text=alt.Text("memory_saving_percent_gains:Q", format=".0%"),
-        color=alt.condition(
-            alt.datum["memory_saving_percent_gains"] < 0, alt.value("black"), alt.value("white")
-        ),
+        color=alt.condition(alt.datum["memory_saving_percent_gains"] < 0, alt.value("black"), alt.value("white")),
     )
 
     _chart = _chart.facet(row=alt.Row("gpus_per_node", title=""), columns=1)
@@ -320,7 +300,7 @@ def __(all_normalized_results, alt):
         )
         .configure_view(fill="lightgray")
         .configure_axis(labelFontSize=32, titleFontSize=32)
-        .configure_header(labelFontSize=36, labelAngle=0, labelOrient='top')
+        .configure_header(labelFontSize=36, labelAngle=0, labelOrient="top")
         .configure_title(fontSize=44, anchor="middle")
     )
 

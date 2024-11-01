@@ -9,6 +9,7 @@ def __():
     import altair as alt
     import marimo as mo
     import polars as pl
+
     return alt, mo, pl
 
 
@@ -16,6 +17,7 @@ def __():
 def __():
     from experiments.training_time_empirical_sweep import TrainingTimeEmpiricalSweep
     from scripts.plotting import process_training_time_results
+
     return TrainingTimeEmpiricalSweep, process_training_time_results
 
 
@@ -73,7 +75,6 @@ def __(
             pl.lit(label).alias("method"), pl.col("training_days").is_not_null().alias("fits_in_memory")
         ).select(["num_nodes", "gpus_per_node", "gpu_type", "model", "method", "fits_in_memory"])
 
-
     _naive = _preprocess(naive_results, "naive")
     _free_lunch = _preprocess(free_lunch_results, "free_lunch")
     _memory_saving = _preprocess(memory_saving_results, "memory_saving")
@@ -84,9 +85,7 @@ def __(
     )
 
     merged_results = merged_results.with_columns(
-        pl.col("gpu_type").replace(
-            {"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}
-        ),
+        pl.col("gpu_type").replace({"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}),
         pl.col("model").replace(
             {
                 "pythia-160m": "160M",
@@ -145,23 +144,20 @@ def __(alt, pl):
                 xOffset=alt.XOffset("method", scale=alt.Scale(domain=_methods), sort=_methods),
             )
         )
+
     return (build_chart,)
 
 
 @app.cell
 def __(build_chart, merged_results, pl):
-    _results = merged_results.filter((pl.col("num_nodes") == 1) & (pl.col("gpus_per_node") == 2)).drop(
-        ["num_nodes"]
-    )
+    _results = merged_results.filter((pl.col("num_nodes") == 1) & (pl.col("gpus_per_node") == 2)).drop(["num_nodes"])
 
     _chart = build_chart(_results, ["Naive", "Optimized"])
 
     _chart = (
         _chart.configure_circle(size=1500)
         .configure_axis(labelFontSize=25, titleFontSize=25)
-        .configure_legend(
-            labelFontSize=25, titleFontSize=25, symbolSize=400, orient="top", labelLimit=200
-        )
+        .configure_legend(labelFontSize=25, titleFontSize=25, symbolSize=400, orient="top", labelLimit=200)
         .properties(width=600, height=250)
         .configure_title(fontSize=30)
         .configure_range(category=["#f58518", "#e45756"])
@@ -215,19 +211,14 @@ def __(
             pl.lit(label).alias("method"), pl.col("training_days").is_not_null().alias("fits_in_memory")
         ).select(["num_nodes", "gpus_per_node", "gpu_type", "model", "method", "fits_in_memory"])
 
-
     _naive = _preprocess(all_naive_results, "naive")
     _free_lunch = _preprocess(all_free_lunch_results, "free_lunch")
     _optimized = _preprocess(all_optimized_results, "optimized")
 
-    all_merged_results = pl.concat([_naive, _free_lunch, _optimized]).filter(
-        pl.col("fits_in_memory") == True
-    )
+    all_merged_results = pl.concat([_naive, _free_lunch, _optimized]).filter(pl.col("fits_in_memory") == True)
 
     all_merged_results = all_merged_results.with_columns(
-        pl.col("gpu_type").replace(
-            {"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}
-        ),
+        pl.col("gpu_type").replace({"geforce3090": "RTX 3090", "a6000": "A6000", "a100": "A100", "h100": "H100"}),
         pl.col("model").replace(
             {
                 "pythia-160m": "Pythia (160M)",
@@ -297,11 +288,10 @@ def __(alt, pl):
                     sort=_methods,
                 ),
                 xOffset=alt.XOffset("method", scale=alt.Scale(domain=_methods), sort=_methods),
-                row=alt.Row(
-                    "gpus_per_node", title="", header=alt.Header(labels=False), sort=["1", "2+"]
-                ),
+                row=alt.Row("gpus_per_node", title="", header=alt.Header(labels=False), sort=["1", "2+"]),
             )
         )
+
     return (all_build_chart,)
 
 
@@ -318,14 +308,12 @@ def __(all_build_chart, all_merged_results, pl):
     _chart = (
         _chart.configure_circle(size=1500)
         .configure_axis(labelFontSize=25, titleFontSize=25)
-        .configure_legend(
-            labelFontSize=25, titleFontSize=25, symbolSize=400, orient="top", labelLimit=200
-        )
+        .configure_legend(labelFontSize=25, titleFontSize=25, symbolSize=400, orient="top", labelLimit=200)
         .properties(width=1600, height=250)
-        .configure_title(fontSize=30, anchor='middle')
+        .configure_title(fontSize=30, anchor="middle")
     )
 
-    _chart.save('artifacts/plots/feasibility_all.pdf')
+    _chart.save("artifacts/plots/feasibility_all.pdf")
 
     _chart.interactive()
     return

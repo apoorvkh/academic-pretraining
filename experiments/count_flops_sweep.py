@@ -3,9 +3,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Annotated
 
+import polars as pl
 import tyro
 
-import polars as pl
 from experiments import Sweep
 from experiments.config import GpuT
 from experiments.count_flops import CountFlopsExperiment
