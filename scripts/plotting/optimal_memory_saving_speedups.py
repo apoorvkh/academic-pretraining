@@ -30,7 +30,7 @@ def __(mo):
 @app.cell
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     _optimized = TrainingTimeEmpiricalSweep(
-        search_space="sweep_configs/training_time_empirical/pythia_optimized.json"
+        search_space="experiments/sweep_configs/training_time_empirical/pythia_optimized.json"
     ).results()
 
     free_lunch_results = process_training_time_results(
@@ -178,7 +178,7 @@ def __(mo):
 @app.cell
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     _optimized = TrainingTimeEmpiricalSweep(
-        search_space="sweep_configs/training_time_empirical/all_optimized.json"
+        search_space="experiments/sweep_configs/training_time_empirical/all_optimized.json"
     ).results()
 
     all_free_lunch_results = process_training_time_results(

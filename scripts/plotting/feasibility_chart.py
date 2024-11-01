@@ -31,12 +31,12 @@ def __(mo):
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     naive_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/pythia_naive.json"
+            search_space="experiments/sweep_configs/training_time_empirical/pythia_naive.json"
         ).results()
     )
 
     _optimized = TrainingTimeEmpiricalSweep(
-        search_space="sweep_configs/training_time_empirical/pythia_optimized.json"
+        search_space="experiments/sweep_configs/training_time_empirical/pythia_optimized.json"
     ).results()
 
     free_lunch_results = process_training_time_results(
@@ -179,12 +179,12 @@ def __(mo):
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     all_naive_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/all_naive.json"
+            search_space="experiments/sweep_configs/training_time_empirical/all_naive.json"
         ).results()
     )
 
     _optimized = TrainingTimeEmpiricalSweep(
-        search_space="sweep_configs/training_time_empirical/all_optimized.json"
+        search_space="experiments/sweep_configs/training_time_empirical/all_optimized.json"
     ).results()
 
     all_free_lunch_results = process_training_time_results(

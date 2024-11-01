@@ -25,7 +25,7 @@ def __():
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/all_optimized.json"
+            search_space="experiments/sweep_configs/training_time_empirical/all_optimized.json"
         ).results(),
         select_min=True,
     )

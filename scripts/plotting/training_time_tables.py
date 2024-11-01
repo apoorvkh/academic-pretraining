@@ -93,7 +93,7 @@ def __(pl):
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     optimal_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/all_optimized.json"
+            search_space="experiments/sweep_configs/training_time_empirical/all_optimized.json"
         ).results(),
         select_min=True,
     )
@@ -110,7 +110,7 @@ def __(optimal_results, training_times_to_table):
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     naive_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/all_naive.json"
+            search_space="experiments/sweep_configs/training_time_empirical/all_naive.json"
         ).results()
     )
     return (naive_results,)

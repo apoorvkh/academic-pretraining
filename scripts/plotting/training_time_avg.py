@@ -28,7 +28,7 @@ def __():
 
 @app.cell
 def __(TrainingTimeAnalyticSweep):
-    flops_results = TrainingTimeAnalyticSweep(search_space="sweep_configs/training_time_analytic/pythia.json").results()
+    flops_results = TrainingTimeAnalyticSweep(search_space="experiments/sweep_configs/training_time_analytic/pythia.json").results()
     return (flops_results,)
 
 
@@ -36,13 +36,13 @@ def __(TrainingTimeAnalyticSweep):
 def __(TrainingTimeEmpiricalSweep, process_training_time_results):
     naive_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/pythia_naive.json"
+            search_space="experiments/sweep_configs/training_time_empirical/pythia_naive.json"
         ).results()
     )
 
     optimized_results = process_training_time_results(
         results=TrainingTimeEmpiricalSweep(
-            search_space="sweep_configs/training_time_empirical/pythia_optimized.json"
+            search_space="experiments/sweep_configs/training_time_empirical/pythia_optimized.json"
         ).results(),
         select_min=True,
     )
