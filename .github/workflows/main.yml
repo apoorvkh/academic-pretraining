@@ -1,0 +1,28 @@
+name: Run checks on push or PR to main
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.34.0
+          frozen: true
+          cache: true
+          environments: ci
+          activate-environment: ci
+      - run: ruff check
+        if: success() || failure()
+      - run: ruff format --check
+        if: success() || failure()
+      - run: pyright
+        if: success() || failure()
