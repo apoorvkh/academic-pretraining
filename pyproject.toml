@@ -20,17 +20,17 @@ dependencies = [
   "torchrunx==0.2.2",
   "submitit==1.5.1",
   "tyro==0.8.10",
-]
-
-[project.optional-dependencies]
-plotting = [
+  # plotting
   "marimo==0.8.18",
   "polars[pandas]==1.7.1",
   "altair==5.4.1",
   "vl-convert-python==1.6.1", # altair[save]
+  # linting, formatting, type checking
+  "ruff==0.6.2",
+  "pyright==1.1.377",
 ]
-# linting, formatting, type checking
-dev = ["ruff==0.6.2", "pyright==1.1.377"]
+
+[project.optional-dependencies]
 # custom kernels for mamba
 mamba = [
   "causal-conv1d @ https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.4.0/causal_conv1d-1.4.0+cu122torch2.3cxx11abiFALSE-cp311-cp311-linux_x86_64.whl",
@@ -41,9 +41,6 @@ mamba = [
 channels = ["nvidia/label/cuda-12.1.0", "conda-forge"]
 platforms = ["linux-64"]
 
-[tool.pixi.activation]
-scripts = [".env"] # auto `source .env` in `pixi shell`
-
 [tool.pixi.dependencies]
 gcc = "11.2.0"
 gxx = "11.2.0"
@@ -52,12 +49,11 @@ pip = "24.2"
 uv = "0.3.3"
 cuda = "12.1.0"
 
-[tool.pixi.feature.dev.dependencies]
-python = "3.11.9"
-
 [tool.pixi.environments]
-default = { features = ["plotting", "dev", "mamba"], solve-group = "default" }
-ci = { features = ["dev"], no-default-feature = true }
+default = { features = ["mamba"], solve-group = "default" }
+
+[tool.pixi.activation]
+scripts = [".env"] # auto `source .env` in `pixi shell`
 
 [tool.ruff]
 line-length = 120

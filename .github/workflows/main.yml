@@ -18,8 +18,8 @@ jobs:
           pixi-version: v0.34.0
           frozen: true
           cache: true
-          environments: ci
-          activate-environment: ci
+          environments: default
+          activate-environment: default
       - run: ruff check
         if: success() || failure()
       - run: ruff format --check
