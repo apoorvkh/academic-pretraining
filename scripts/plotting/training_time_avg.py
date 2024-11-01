@@ -28,7 +28,9 @@ def __():
 
 @app.cell
 def __(TrainingTimeAnalyticSweep):
-    flops_results = TrainingTimeAnalyticSweep(search_space="experiments/sweep_configs/training_time_analytic/pythia.json").results()
+    flops_results = TrainingTimeAnalyticSweep(
+        search_space="experiments/sweep_configs/training_time_analytic/pythia.json"
+    ).results()
     return (flops_results,)
 
 
