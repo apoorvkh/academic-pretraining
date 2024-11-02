@@ -61,7 +61,6 @@ class Experiment(ABC):
         return self.step_dict[step_name].result(workspace=tango_workspace)
 
     def check_dependencies(self):
-        print("\n" "Checking dependencies ... " "\n")
         dependent_experiments = self.dependencies
         not_cached = sum([not e.is_cached() for e in dependent_experiments])
         if not_cached > 0:
@@ -195,7 +194,7 @@ class Sweep(Generic[ExperimentT], ABC):
             experiment_batches = [[e] for e in self.experiments]
 
         launch_counter = 0
-        pbar = tqdm(total=len(self.experiments)).__enter__()
+        pbar = tqdm(desc="Experiments", total=len(self.experiments)).__enter__()
         rsync_cm.__enter__()
 
         for batch in experiment_batches:
