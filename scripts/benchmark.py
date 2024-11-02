@@ -1,3 +1,5 @@
+import signal
+import sys
 from typing import Literal
 
 import tyro
@@ -27,7 +29,14 @@ def run_benchmark(
     elif methods == "all":
         free_lunch = [True]
         activation_checkpointing = [False, True]
-        sharding = ["", "zero_1", "zero_2", "zero_3", "fsdp_shard_grad_op", "fsdp_full_shard"]
+        sharding = [
+            "",
+            "zero_1",
+            "zero_2",
+            "zero_3",
+            "fsdp_shard_grad_op",
+            "fsdp_full_shard",
+        ]
         offloading = [False, True]
 
     experiment_sweep = TrainingTimeEmpiricalSweep(
@@ -47,4 +56,7 @@ def run_benchmark(
 
 
 if __name__ == "__main__":
-    tyro.cli(run_benchmark)
+    try:
+        tyro.cli(run_benchmark)
+    except KeyboardInterrupt:
+        sys.exit(128 + signal.SIGINT)

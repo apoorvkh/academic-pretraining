@@ -236,7 +236,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a7/03/fb50fc03f86016b227a967c8d474f90230c885c0d18f78acdfda7a96ce56/tokenizers-0.19.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/f9/b6/a447b5e4ec71e13871be01ba81f5dfc9d0af7e473da256ff46bc0e24026f/tomlkit-0.13.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/9a/4c5e74264439837814656201da13a898056a5201c976ef042544bceb840f/torch-2.3.1-cp311-cp311-manylinux1_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/86/68/40db980d9108f460b5bedd34e4b6140c8b9157b939368b667213093f42b6/torchrunx-0.2.2-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/b6/92/464917a188b1bb69ea06160fb632910ab82a6ebd70da8335f9cc589126cc/torchrunx-0.2.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/82/d8/fad23c368781b6e6df254287511683b4d151132de64c47a6fea5c3280ba6/torchvision-0.18.1-cp311-cp311-manylinux1_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/41/73/02342de9c2d20922115f787e101527b831c0cffd2105c946c4a4826bcfd4/tqdm-4.66.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/20/5c/244db59e074e80248fdfa60495eeee257e4d97c3df3487df68be30cd60c8/transformers-4.42.3-py3-none-any.whl
@@ -1337,49 +1337,49 @@ packages:
   - torch
   - tqdm
   - mpi4py ; extra == '1bit-mpi'
-  - lm-eval==0.3.0 ; extra == 'all'
-  - pytest-forked ; extra == 'all'
-  - packaging ; extra == 'all'
-  - sphinx-rtd-theme ; extra == 'all'
-  - autodoc-pydantic ; extra == 'all'
-  - neural-compressor==2.1.0 ; extra == 'all'
+  - safetensors ; extra == 'all'
   - wandb ; extra == 'all'
-  - xgboost ; extra == 'all'
+  - packaging ; extra == 'all'
   - diffusers>=0.25.0 ; extra == 'all'
-  - sentencepiece ; extra == 'all'
-  - hjson ; extra == 'all'
-  - tabulate ; extra == 'all'
-  - protobuf ; extra == 'all'
-  - pre-commit>=2.20.0 ; extra == 'all'
-  - triton>=2.1.0 ; extra == 'all'
-  - mpi4py ; extra == 'all'
-  - tensorboard ; extra == 'all'
+  - autodoc-pydantic ; extra == 'all'
   - triton==2.1.0 ; extra == 'all'
-  - psutil ; extra == 'all'
-  - torchvision ; extra == 'all'
-  - pytest-xdist ; extra == 'all'
   - py-cpuinfo ; extra == 'all'
+  - future ; extra == 'all'
+  - tensorboard ; extra == 'all'
+  - pytest>=7.2.0 ; extra == 'all'
+  - qtorch ; extra == 'all'
+  - pytest-forked ; extra == 'all'
+  - torchvision ; extra == 'all'
+  - accelerate ; extra == 'all'
+  - mup ; extra == 'all'
+  - qtorch==0.3.0 ; extra == 'all'
+  - sphinx ; extra == 'all'
+  - transformers>=4.39.0 ; extra == 'all'
+  - neural-compressor==2.1.0 ; extra == 'all'
   - pydantic<2.0.0 ; extra == 'all'
   - docutils<0.18 ; extra == 'all'
-  - mup ; extra == 'all'
-  - pytest-randomly ; extra == 'all'
-  - sphinx ; extra == 'all'
-  - importlib-metadata>=4 ; extra == 'all'
-  - qtorch ; extra == 'all'
-  - safetensors ; extra == 'all'
-  - triton==1.0.0 ; extra == 'all'
-  - accelerate ; extra == 'all'
-  - qtorch==0.3.0 ; extra == 'all'
-  - transformers>=4.32.1 ; extra == 'all'
-  - future ; extra == 'all'
-  - recommonmark ; extra == 'all'
-  - pytest>=7.2.0 ; extra == 'all'
-  - google ; extra == 'all'
-  - transformers>=4.39.0 ; extra == 'all'
-  - torch ; extra == 'all'
-  - clang-format==16.0.2 ; extra == 'all'
-  - tqdm ; extra == 'all'
+  - hjson ; extra == 'all'
+  - triton>=2.1.0 ; extra == 'all'
+  - pre-commit>=2.20.0 ; extra == 'all'
+  - sphinx-rtd-theme ; extra == 'all'
   - comet-ml>=3.41.0 ; extra == 'all'
+  - tqdm ; extra == 'all'
+  - pytest-xdist ; extra == 'all'
+  - clang-format==16.0.2 ; extra == 'all'
+  - importlib-metadata>=4 ; extra == 'all'
+  - pytest-randomly ; extra == 'all'
+  - recommonmark ; extra == 'all'
+  - protobuf ; extra == 'all'
+  - psutil ; extra == 'all'
+  - mpi4py ; extra == 'all'
+  - transformers>=4.32.1 ; extra == 'all'
+  - tabulate ; extra == 'all'
+  - xgboost ; extra == 'all'
+  - google ; extra == 'all'
+  - lm-eval==0.3.0 ; extra == 'all'
+  - sentencepiece ; extra == 'all'
+  - triton==1.0.0 ; extra == 'all'
+  - torch ; extra == 'all'
   - deepspeed-kernels ; sys_platform == 'linux' and extra == 'all'
   - tabulate ; extra == 'autotuning'
   - hjson ; extra == 'autotuning-ml'
@@ -3810,9 +3810,9 @@ packages:
   requires_python: '>=3.8.0'
 - kind: pypi
   name: torchrunx
-  version: 0.2.2
-  url: https://files.pythonhosted.org/packages/86/68/40db980d9108f460b5bedd34e4b6140c8b9157b939368b667213093f42b6/torchrunx-0.2.2-py3-none-any.whl
-  sha256: 2bce6f297eca135c31580cbf5586678c7b2147375a880873a4484eeb682f7248
+  version: 0.2.3
+  url: https://files.pythonhosted.org/packages/b6/92/464917a188b1bb69ea06160fb632910ab82a6ebd70da8335f9cc589126cc/torchrunx-0.2.3-py3-none-any.whl
+  sha256: f9a3960ddef1d91eca26c68497cd1b34f71aece16e7f3145408ca5e2f4272171
   requires_dist:
   - cloudpickle>=3.0
   - fabric>=3.2
