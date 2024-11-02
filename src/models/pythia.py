@@ -2,6 +2,7 @@ from typing import Any, Literal
 
 import torch.optim
 from transformers import (
+    GPTNeoXConfig,
     GPTNeoXForCausalLM,
     PreTrainedModel,
     SchedulerType,
@@ -12,11 +13,13 @@ from . import LanguageModelClass, PythiaT
 
 class PythiaModelClass(LanguageModelClass[PythiaT]):
     def build_model(self, use_custom_kernels: bool = True) -> PreTrainedModel:
-        return GPTNeoXForCausalLM.from_pretrained(
+        # to ensure same initialization as original Pythia training, use:
+        # GPTNeoXForCausalLM.from_pretrained(revision="step0", ...)
+        config = GPTNeoXConfig.from_pretrained(
             f"EleutherAI/{self.model_type}",
-            # revision="step0",  # to ensure same initialization as original Pythia training
             attn_implementation=("sdpa" if use_custom_kernels else "eager"),
-        )  # pyright: ignore [reportReturnType]
+        )
+        return GPTNeoXForCausalLM(config)
 
     @property
     def batch_size(self) -> int:
