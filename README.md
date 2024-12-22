@@ -147,7 +147,13 @@ marimo edit scripts/plotting/optimal_table.py
 
 ## Artifacts
 
-We provide all artifacts from our paper and experiments as `artifacts.tar` in [Releases](https://github.com/apoorvkh/academic-pretraining/releases). Our artifacts include:
+We provide all artifacts from our paper and experiments as `artifacts.tar` under certain [releases](https://github.com/apoorvkh/academic-pretraining/releases).
+
+| Paper Revision | Release Tag |
+| --- | --- |
+| [arxiv-v1](https://arxiv.org/abs/2410.23261v1) | v1.0.0 |
+
+Our artifacts include:
 
 - anonymized results from our survey (`artifacts/survey.csv`)
 - the [Tango](http://ai2-tango.readthedocs.io) workspace (`artifacts/tango_workspace.tgz`) with cached results from all our experiments
@@ -157,7 +163,7 @@ You can exactly reproduce all plots in our paper ([#plotting](#plotting)) using 
 You can checkout a specific release and its artifacts via:
 
 ```bash
-RELEASE_TAG=arxiv-v1
+RELEASE_TAG=v1.0.0
 
 git clone https://github.com/apoorvkh/academic-pretraining.git --branch $RELEASE_TAG --single-branch academic-pretraining-$RELEASE_TAG
 cd academic-pretraining-$RELEASE_TAG
@@ -170,8 +176,6 @@ tar xzf artifacts/tango_workspace.tgz
 ```
 
 ## Citation
-
-If you use our codebase in your work, please cite:
 
 ```bibtex
 @misc{khandelwal2024:100k,
