@@ -52,7 +52,7 @@ class ManualTrainer(Trainer):
 
         ## manually step DeepSpeed optimizer (i.e. not in accelerator.backwards)
         if has_deepspeed_engine(trainer):
-            trainer.accelerator.deepspeed_engine_wrapped.__class__ = DeepSpeedEngineWrapperManualStep
+            trainer.accelerator.deepspeed_engine_wrapped.__class__ = DeepSpeedEngineWrapperManualStep  # pyright: ignore [reportOptionalMemberAccess]
         ##
 
         trainer.__class__ = cls

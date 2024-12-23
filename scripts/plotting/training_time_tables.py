@@ -9,6 +9,7 @@ def _():
     import altair as alt
     import marimo as mo
     import polars as pl
+
     return alt, mo, pl
 
 
@@ -16,6 +17,7 @@ def _():
 def _():
     from experiments.training_time_empirical_sweep import TrainingTimeEmpiricalSweep
     from scripts.plotting import process_training_time_results
+
     return TrainingTimeEmpiricalSweep, process_training_time_results
 
 
@@ -63,14 +65,13 @@ def _(pl):
 
         for _gpu in _gpu_types.values():
             _gpu_cols = {f'{{{_n},"{_gpu}"}}': str(_n) for _n in _num_gpus}
-            _table = _table.tab_spanner(label=_gpu, columns=list(_gpu_cols.keys())).cols_label(
-                _gpu_cols
+            _table = _table.tab_spanner(label=_gpu, columns=list(_gpu_cols.keys())).cols_label(_gpu_cols)
+            _table = _table.fmt_number(columns=list(_gpu_cols.keys()), decimals=0, use_seps=False).sub_missing(
+                columns=list(_gpu_cols.keys()), missing_text="---"
             )
-            _table = _table.fmt_number(
-                columns=list(_gpu_cols.keys()), decimals=0, use_seps=False
-            ).sub_missing(columns=list(_gpu_cols.keys()), missing_text="---")
 
         return _table.as_latex()
+
     return (training_times_to_table,)
 
 
@@ -122,6 +123,7 @@ def _(mo):
 @app.cell
 def _():
     from src.models import get_model_class
+
     return (get_model_class,)
 
 
@@ -190,11 +192,7 @@ def _(batch_sizes, optimal_results, pl):
             batch_size=pl.col("model").replace(batch_sizes).cast(int),
         )
         .filter(pl.col("num_nodes") == 1)
-        .with_columns(
-            grad_acc_steps=(
-                pl.col("batch_size") // (pl.col("micro_batch_size") * pl.col("gpus_per_node"))
-            )
-        )
+        .with_columns(grad_acc_steps=(pl.col("batch_size") // (pl.col("micro_batch_size") * pl.col("gpus_per_node"))))
         .drop(
             [
                 "trial",

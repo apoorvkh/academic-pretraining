@@ -7,6 +7,7 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     from experiments.count_flops_sweep import CountFlopsSweep
+
     return (CountFlopsSweep,)
 
 
@@ -21,6 +22,7 @@ def _():
     import math
 
     import polars as pl
+
     return math, pl
 
 
@@ -52,9 +54,7 @@ def _(pl, results):
         .as_latex()
     )
 
-    _latex_table = _latex_table[
-        _latex_table.find("\\begin{tabular*}") : _latex_table.find("\n\\end{table}")
-    ]
+    _latex_table = _latex_table[_latex_table.find("\\begin{tabular*}") : _latex_table.find("\n\\end{table}")]
     _latex_table = _latex_table.replace(
         "\\begin{tabular*}{\\linewidth}{@{\\extracolsep{\\fill}}", "\\begin{tabular}{"
     ).replace("\\end{tabular*}", "\\end{tabular}")
