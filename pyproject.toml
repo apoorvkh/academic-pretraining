@@ -22,7 +22,7 @@ dependencies = [
   "tyro==0.8.10",
   # plotting
   "marimo==0.8.18",
-  "polars[pandas]==1.7.1",
+  "polars[style]==1.17.1",
   "altair==5.4.1",
   "vl-convert-python==1.6.1", # altair[save]
   # linting, formatting, type checking
