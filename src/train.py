@@ -111,16 +111,10 @@ class TrainingClass:
         fsdp_options, fsdp_config = self._build_fsdp_config()
         ds_config = self._build_deepspeed_config()
 
-        gradient_checkpointing = self.gradient_checkpointing
-
         # DDPOptimizer + activation checkpointing not supported
         # [https://github.com/pytorch/pytorch/issues/104674]
-        if gradient_checkpointing:
+        if self.gradient_checkpointing:
             torch._dynamo.config.optimize_ddp = False
-
-        # should not checkpoint in both FSDP and HF Trainer
-        if (fsdp_config or {}).get("activation_checkpointing", False):
-            gradient_checkpointing = False
 
         scheduler_warmup_steps = self.scheduler_kwargs.pop("num_warmup_steps", 0)
 
@@ -131,7 +125,7 @@ class TrainingClass:
             lr_scheduler_type=self.scheduler_type.value,
             lr_scheduler_kwargs=self.scheduler_kwargs,
             warmup_steps=scheduler_warmup_steps,
-            gradient_checkpointing=gradient_checkpointing,
+            gradient_checkpointing=self.gradient_checkpointing,
             bf16=self.bf16,
             fp16=self.fp16,
             tf32=self.tf32,
@@ -154,7 +148,6 @@ class TrainingClass:
             fsdp_options += [FSDPOption.OFFLOAD]
         fsdp_config = {
             "transformer_layer_cls_to_wrap": self.fsdp_layers_to_wrap,
-            "activation_checkpointing": self.gradient_checkpointing,
         }
         return fsdp_options, fsdp_config
 
