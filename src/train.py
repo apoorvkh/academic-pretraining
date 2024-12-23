@@ -70,39 +70,23 @@ class TrainingClass:
             os.environ["NCCL_P2P_DISABLE"] = "1"
             os.environ["NCCL_IB_DISABLE"] = "1"
 
-        return self.trainer_cls(
-            model=model,
-            args=self.to_huggingface_args(**hf_training_args_overrides),
-            train_dataset=train_dataset,
-            **hf_trainer_kwargs_overrides,
-        )
-
-    @property
-    def trainer_cls(self) -> type[Trainer]:
-        # If using Deepspeed, use Deepspeed's Adam optimizer
-        if self.zero_stage != "0" and self.optimizer in [torch.optim.Adam, torch.optim.AdamW]:
-            return Trainer
+        optimizer_cls_and_kwargs = (self.optimizer, self.optimizer_kwargs)
 
         # TODO: For now PyTorch fused Adam optimizer seems to break often
         # if self.optimizer in [torch.optim.Adam, torch.optim.AdamW]
         # self.optimizer_kwargs["fused"] = True
 
-        class CustomOptimizerTrainer(Trainer):
-            @staticmethod
-            def get_optimizer_cls_and_kwargs(
-                args: TrainingArguments, model=None
-            ) -> tuple[type[torch.optim.Optimizer], dict[str, Any]]:
-                return self.optimizer, self.optimizer_kwargs
+        # If using Deepspeed, use Deepspeed's Adam optimizer
+        if self.zero_stage != "0" and self.optimizer in [torch.optim.Adam, torch.optim.AdamW]:
+            optimizer_cls_and_kwargs = None
 
-            # Can remove this after transformers==4.43.0
-            def create_optimizer(self):
-                trainer_get_optimizer_fn = Trainer.get_optimizer_cls_and_kwargs
-                Trainer.get_optimizer_cls_and_kwargs = self.get_optimizer_cls_and_kwargs
-                optimizer = super().create_optimizer()
-                Trainer.get_optimizer_cls_and_kwargs = trainer_get_optimizer_fn
-                return optimizer
-
-        return CustomOptimizerTrainer
+        return Trainer(
+            model=model,
+            args=self.to_huggingface_args(**hf_training_args_overrides),
+            train_dataset=train_dataset,
+            optimizer_cls_and_kwargs=optimizer_cls_and_kwargs,
+            **hf_trainer_kwargs_overrides,
+        )
 
     def to_huggingface_args(self, **hf_training_args_overrides) -> TrainingArguments:
         return TrainingArguments(**self._to_huggingface_args_dict(**hf_training_args_overrides))
