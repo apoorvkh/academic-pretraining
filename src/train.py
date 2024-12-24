@@ -136,6 +136,9 @@ class TrainingClass:
         return fsdp_options, fsdp_config
 
     def _build_deepspeed_config(self) -> dict | None:
+        if self.zero_stage == "0":
+            return None
+
         config = {
             "fp16": {
                 "enabled": "auto",
@@ -164,8 +167,6 @@ class TrainingClass:
             }
 
         match self.zero_stage:
-            case "0":
-                return None
             case "1":
                 config["zero_optimization"] = {"stage": 1}
             case "2":
