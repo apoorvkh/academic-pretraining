@@ -7,13 +7,6 @@ from ..models import BaseModelClass
 
 
 def count_flops_per_example(model_class: BaseModelClass) -> float:
-    # Issue: FlopCounterMode broken for mamba
-    # Will be resolved in PyTorch 2.4.0 with PR 123768
-    # Temp fix: computed manually with patch
-    if model_class.model_type == "mamba":
-        return 68_275_048_284_160
-    #
-
     assert torch.cuda.is_available()
 
     model = model_class.build_model(use_custom_kernels=False)
