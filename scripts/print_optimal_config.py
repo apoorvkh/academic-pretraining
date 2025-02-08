@@ -24,7 +24,8 @@ def print_optimal_config(num_nodes: int, gpus_per_node: int, gpu_type: GpuT, mod
     batch_size = get_model_class(model_type=model).batch_size
 
     min_training_time = (
-        results.sort("training_days")
+        results.filter(pl.col("training_days").is_not_null())
+        .sort("training_days")
         .head(1)
         .with_columns(grad_acc_steps=(batch_size // (pl.col("micro_batch_size") * pl.col("gpus_per_node"))))
         .select(
