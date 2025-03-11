@@ -5,12 +5,13 @@ from dataclasses import dataclass
 from typing import Any, TypedDict
 
 import torch
+import torchrunx
 from src.benchmarking.max_batch_size import find_max_mbs_pow2
 from src.benchmarking.step_time import estimate_step_time
 from src.benchmarking.utils import ManualTrainer
 from tango import Step
 
-from experiments import Experiment, SlurmJob, distribute, step
+from experiments import Experiment, SlurmJob, step
 from experiments.config import TrainingConfig
 
 
@@ -50,10 +51,10 @@ def find_largest_batch_size_worker(config: TrainingConfig, limit: int):
 
 @step(cacheable=True, version="001")
 def find_largest_batch_size(config: TrainingConfig, limit: int) -> int:
-    return distribute(
-        func=find_largest_batch_size_worker,
-        func_kwargs={"config": config, "limit": limit},
-        workers_per_host=config.gpus_per_node,
+    return (
+        torchrunx.Launcher(workers_per_host=config.gpus_per_node)
+        .run(find_largest_batch_size_worker, config=config, limit=limit)
+        .rank(0)
     )
 
 
@@ -94,30 +95,32 @@ def benchmark_step_time(
 
     while micro_batch_size > 0:
         try:
-            benchmark_results = distribute(
-                func=benchmark_step_time_worker,
-                func_kwargs=dict(
+            benchmark_results = (
+                torchrunx.Launcher(workers_per_host=config.gpus_per_node)
+                .run(
+                    benchmark_step_time_worker,
                     config=config,
                     disable_compile=False,
                     micro_batch_size=micro_batch_size,
                     target_micro_batch_size=target_micro_batch_size,
                     num_benchmarking_steps=num_benchmarking_steps,
-                ),
-                workers_per_host=config.gpus_per_node,
+                )
+                .rank(0)
             )
         except RuntimeError:
             if config.free_lunch:
                 print("Possible time-out during compile, trying again without compiling...")
-                benchmark_results = distribute(
-                    func=benchmark_step_time_worker,
-                    func_kwargs=dict(
+                benchmark_results = (
+                    torchrunx.Launcher(workers_per_host=config.gpus_per_node)
+                    .run(
+                        benchmark_step_time_worker,
                         config=config,
                         disable_compile=True,
                         micro_batch_size=micro_batch_size,
                         target_micro_batch_size=target_micro_batch_size,
                         num_benchmarking_steps=num_benchmarking_steps,
-                    ),
-                    workers_per_host=config.gpus_per_node,
+                    )
+                    .rank(0)
                 )
             else:
                 raise

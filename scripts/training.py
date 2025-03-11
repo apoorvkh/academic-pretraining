@@ -59,14 +59,12 @@ def train(output_dir: str, model_type: ModelT, training_arguments: dict[str, Any
 
 
 def run(launcher: torchrunx.Launcher, output_dir: str, model_type: ModelT, training_arguments: Path):
-    training_arguments = json.load(open(training_arguments, "r"))
+    training_arguments: dict[str, Any] = json.load(open(training_arguments, "r"))
     launcher.run(
-        func=train,
-        func_kwargs=dict(
-            output_dir=output_dir,
-            model_type=model_type,
-            training_arguments=training_arguments,
-        ),
+        train,
+        output_dir=output_dir,
+        model_type=model_type,
+        training_arguments=training_arguments,
     )
 
 

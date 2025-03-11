@@ -185,6 +185,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/b9/54/dd730b32ea14ea797530a4479b2ed46a6fb250f682a9cfb997e968bf0261/networkx-3.4.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6b/35/a8e38d54768e67324e365e2a41162be298f51ec93e6bd4b18d237d7250d8/ninja-1.11.1.3-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d2/1d/1b658dbd2b9fa9c4c9f32accbfc0205d532c8c6194dc0f2a4c0428e7128a/nodeenv-1.9.1-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/6d/9f/42bdaab26137e31732bff00147b9aca2185d475b5752b57a443e6c7ba93f/nodejs_wheel_binaries-22.14.0-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/7f/a7/c1f1d978166eb6b98ad009503e4d93a8c1962d0eb14a885c352ee0276a54/numpy-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/ae/71/1c91302526c45ab494c23f61c7a84aa568b8c1f9d196efa5993957faf906/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/67/42/f4f60238e8194a3106d06a058d494b18e006c10bb2b915655bd9f6ea4cb1/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
@@ -242,7 +243,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/22/06/69d7ce374747edaf1695a4f61b83570d91cc8bbfc51ccfecf76f56ab4aac/tokenizers-0.21.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/f9/b6/a447b5e4ec71e13871be01ba81f5dfc9d0af7e473da256ff46bc0e24026f/tomlkit-0.13.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8b/5c/36c114d120bfe10f9323ed35061bc5878cc74f3f594003854b0ea298942f/torch-2.5.1-cp312-cp312-manylinux1_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/b6/92/464917a188b1bb69ea06160fb632910ab82a6ebd70da8335f9cc589126cc/torchrunx-0.2.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/fa/b9/0f0ebeb8e83de04775767a9bfb920322ec62c234826f8539d3aeb737de9e/torchrunx-0.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d4/75/00a852275ade58d3dc474530f7a7b6bc999a817148f0eb59d4fde12eb955/torchvision-0.20.1-cp312-cp312-manylinux1_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f2/3a/8bdab26e09c5a242182b7ba9152e216d5ab4ae2d78c4298eb4872549cd35/transformers-4.47.1-py3-none-any.whl
@@ -1014,49 +1015,49 @@ packages:
   - torch
   - tqdm
   - mpi4py ; extra == '1bit-mpi'
-  - accelerate ; extra == 'all'
-  - torch ; extra == 'all'
-  - pytest-xdist ; extra == 'all'
-  - tabulate ; extra == 'all'
-  - qtorch ; extra == 'all'
-  - clang-format==18.1.3 ; extra == 'all'
-  - neural-compressor==2.1.0 ; extra == 'all'
-  - docutils<0.18 ; extra == 'all'
-  - pydantic>=2.0.0 ; extra == 'all'
-  - pytest-forked ; extra == 'all'
-  - sentencepiece ; extra == 'all'
-  - diffusers>=0.25.0 ; extra == 'all'
-  - packaging ; extra == 'all'
-  - autodoc-pydantic>=2.0.0 ; extra == 'all'
+  - mup ; extra == 'all'
+  - comet-ml>=3.41.0 ; extra == 'all'
   - sphinx-rtd-theme ; extra == 'all'
-  - transformers>=4.39.0 ; extra == 'all'
+  - triton>=2.1.0 ; extra == 'all'
+  - protobuf ; extra == 'all'
+  - hjson ; extra == 'all'
+  - docutils<0.18 ; extra == 'all'
+  - pytest-randomly ; extra == 'all'
+  - packaging ; extra == 'all'
+  - qtorch ; extra == 'all'
+  - transformers>=4.32.1 ; extra == 'all'
+  - future ; extra == 'all'
+  - pytest-xdist ; extra == 'all'
+  - neural-compressor==2.1.0 ; extra == 'all'
+  - tabulate ; extra == 'all'
+  - pydantic>=2.0.0 ; extra == 'all'
+  - google ; extra == 'all'
+  - py-cpuinfo ; extra == 'all'
   - torchvision ; extra == 'all'
-  - triton==2.1.0 ; extra == 'all'
+  - triton==1.0.0 ; extra == 'all'
+  - mpi4py ; extra == 'all'
+  - sentencepiece ; extra == 'all'
+  - pre-commit>=3.2.0 ; extra == 'all'
   - wandb ; extra == 'all'
   - qtorch==0.3.0 ; extra == 'all'
-  - xgboost ; extra == 'all'
-  - tensorboard ; extra == 'all'
-  - triton==1.0.0 ; extra == 'all'
-  - hjson ; extra == 'all'
-  - pytest-randomly ; extra == 'all'
-  - safetensors ; extra == 'all'
-  - psutil ; extra == 'all'
-  - google ; extra == 'all'
-  - triton>=2.1.0 ; extra == 'all'
   - recommonmark ; extra == 'all'
-  - future ; extra == 'all'
-  - transformers>=4.32.1 ; extra == 'all'
-  - mup ; extra == 'all'
-  - mpi4py ; extra == 'all'
-  - protobuf ; extra == 'all'
-  - py-cpuinfo ; extra == 'all'
-  - pre-commit>=3.2.0 ; extra == 'all'
-  - comet-ml>=3.41.0 ; extra == 'all'
-  - importlib-metadata>=4 ; extra == 'all'
-  - pytest>=7.2.0 ; extra == 'all'
-  - lm-eval==0.3.0 ; extra == 'all'
   - tqdm ; extra == 'all'
+  - clang-format==18.1.3 ; extra == 'all'
+  - lm-eval==0.3.0 ; extra == 'all'
+  - pytest-forked ; extra == 'all'
+  - pytest>=7.2.0 ; extra == 'all'
+  - diffusers>=0.25.0 ; extra == 'all'
+  - safetensors ; extra == 'all'
+  - triton==2.1.0 ; extra == 'all'
+  - tensorboard ; extra == 'all'
+  - torch ; extra == 'all'
+  - importlib-metadata>=4 ; extra == 'all'
+  - xgboost ; extra == 'all'
+  - autodoc-pydantic>=2.0.0 ; extra == 'all'
+  - accelerate ; extra == 'all'
+  - transformers>=4.39.0 ; extra == 'all'
   - sphinx ; extra == 'all'
+  - psutil ; extra == 'all'
   - deepspeed-kernels ; sys_platform == 'linux' and extra == 'all'
   - tabulate ; extra == 'autotuning'
   - hjson ; extra == 'autotuning-ml'
@@ -2391,6 +2392,13 @@ packages:
   version: 1.9.1
   sha256: ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*'
+- pypi: https://files.pythonhosted.org/packages/6d/9f/42bdaab26137e31732bff00147b9aca2185d475b5752b57a443e6c7ba93f/nodejs_wheel_binaries-22.14.0-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  name: nodejs-wheel-binaries
+  version: 22.14.0
+  sha256: 8fded5a70a8a55c2135e67bd580d8b7f2e94fcbafcc679b6a2d5b92f88373d69
+  requires_dist:
+  - typing-extensions ; python_full_version < '3.8'
+  requires_python: '>=3.7'
 - conda: https://conda.anaconda.org/nvidia/label/cuda-12.4.0/linux-64/nsight-compute-2024.1.0.13-0.tar.bz2
   md5: a7c0cc361fe3e5e02693cfde67b59451
   size: 699466441
@@ -3028,15 +3036,16 @@ packages:
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - optree>=0.12.0 ; extra == 'optree'
   requires_python: '>=3.8.0'
-- pypi: https://files.pythonhosted.org/packages/b6/92/464917a188b1bb69ea06160fb632910ab82a6ebd70da8335f9cc589126cc/torchrunx-0.2.3-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/fa/b9/0f0ebeb8e83de04775767a9bfb920322ec62c234826f8539d3aeb737de9e/torchrunx-0.3.0-py3-none-any.whl
   name: torchrunx
-  version: 0.2.3
-  sha256: f9a3960ddef1d91eca26c68497cd1b34f71aece16e7f3145408ca5e2f4272171
+  version: 0.3.0
+  sha256: 8161b0110f90ac2fb1b573eb12e96c8b05610aa38e26219ffa0c574d2908f6e4
   requires_dist:
   - cloudpickle>=3.0
   - fabric>=3.2
   - numpy>=1.20
   - torch>=2.0
+  - typing-extensions>=4.9.0
   requires_python: '>=3.9'
 - pypi: https://files.pythonhosted.org/packages/d4/75/00a852275ade58d3dc474530f7a7b6bc999a817148f0eb59d4fde12eb955/torchvision-0.20.1-cp312-cp312-manylinux1_x86_64.whl
   name: torchvision
