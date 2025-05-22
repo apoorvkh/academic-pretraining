@@ -28,7 +28,7 @@ pixi shell
 
 ## Run our benchmark on your model / hardware
 
-<details><summary><code>python scripts/benchmark.py --help</code></summary>
+<details><summary>[expand] <code>python scripts/benchmark.py --help</code></summary>
 
 ```bash
 ╭─ options ───────────────────────────────────────────────╮
@@ -57,7 +57,7 @@ For example (run this on specified hardware): `python scripts/benchmark.py --num
 
 After your results are computed, you can run our scripts to generate the optimal [`TrainingArguments`](https://huggingface.co/docs/transformers/en/main_classes/trainer#transformers.TrainingArguments).
 
-<details><summary><code>python scripts/print_optimal_config.py --num-nodes 1 --gpus-per-node 4 --gpu-type a100 --model pythia-1b</code></summary>
+<details><summary>[expand] <code>python scripts/print_optimal_config.py --num-nodes 1 --gpus-per-node 4 --gpu-type a100 --model pythia-1b</code></summary>
 
 ```bash
 ┌───────────┬───────────────┬──────────┬───────────┬────────────┬──────────────────────────┬──────────┬────────────┬──────────────────┬────────────────┬───────────────┐
@@ -70,7 +70,7 @@ After your results are computed, you can run our scripts to generate the optimal
 ```
 </details>
 
-<details><summary><code>python scripts/to_training_arguments.py --output artifacts/training_arguments.json --num-nodes 1 --gpus-per-node 4 --gpu-type a100 --model pythia-1b --free-lunch --sharding zero_1 --micro-batch-size 16 --gradient-accumulation-steps 16</code></summary>
+<details><summary>[expand] <code>python scripts/to_training_arguments.py --output artifacts/training_arguments.json --num-nodes 1 --gpus-per-node 4 --gpu-type a100 --model pythia-1b --free-lunch --sharding zero_1 --micro-batch-size 16 --gradient-accumulation-steps 16</code></summary>
 
 `artifacts/training_arguments.json`
 
