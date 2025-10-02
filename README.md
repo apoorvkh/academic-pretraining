@@ -163,7 +163,7 @@ We provide all artifacts from our paper and experiments as `artifacts.tar` under
 
 | Paper Revision | Release Tag |
 | --- | --- |
-| [arxiv-v1](https://arxiv.org/abs/2410.23261v1) | v1.0.0 |
+| [arxiv-v1](https://arxiv.org/abs/2410.23261v1), [arxiv-v2](https://arxiv.org/abs/2410.23261v2) | v1.0.0 |
 
 Our artifacts include:
 
