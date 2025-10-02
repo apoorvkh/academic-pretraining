@@ -1,6 +1,8 @@
-# $100K or 100 Days: Trade-offs when Pre-Training with Academic Resources
+# [$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources](https://arxiv.org/abs/2410.23261)
 
 Apoorv Khandelwal, Tian Yun, Nihal V. Nayak, Jack Merullo, Stephen H. Bach, Chen Sun, Ellie Pavlick
+
+Published at COLM 2025
 
 ---
 
@@ -188,13 +190,12 @@ tar xzf artifacts/tango_workspace.tgz
 ## Citation
 
 ```bibtex
-@misc{khandelwal2024:100k,
-  title         = {{$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources}},
-  author        = {Apoorv Khandelwal and Tian Yun and Nihal V. Nayak and Jack Merullo and Stephen H. Bach and Chen Sun and Ellie Pavlick},
-  year          = 2024,
-  url           = {https://arxiv.org/pdf/2410.23261},
-  eprint        = {2410.23261},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CL}
+@inproceedings{
+    khandelwal2025:100k,
+    title={\$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources},
+    author={Apoorv Khandelwal and Tian Yun and Nihal V. Nayak and Jack Merullo and Stephen Bach and Chen Sun and Ellie Pavlick},
+    booktitle={Second Conference on Language Modeling},
+    year={2025},
+    url={https://arxiv.org/abs/2410.23261}
 }
 ```
