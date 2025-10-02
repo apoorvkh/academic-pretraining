@@ -190,8 +190,7 @@ tar xzf artifacts/tango_workspace.tgz
 ## Citation
 
 ```bibtex
-@inproceedings{
-    khandelwal2025:100k,
+@inproceedings{khandelwal2025:100k,
     title={\$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources},
     author={Apoorv Khandelwal and Tian Yun and Nihal V. Nayak and Jack Merullo and Stephen Bach and Chen Sun and Ellie Pavlick},
     booktitle={Second Conference on Language Modeling},
